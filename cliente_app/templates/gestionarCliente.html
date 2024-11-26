@@ -1,0 +1,86 @@
+{% extends "base2.html" %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"><!--la fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--columna izquierda-->
+
+    <h1>Clientes 🛒</h1>
+     <!--aqui codigo tarjeta-->
+     <div class="card"> <!--la tarjeta-->
+        <div class="card-body">
+            <form action="/registrarCliente/" method="POST"> {% csrf_token %} <!--falta action-->
+                <div class="form-group">
+                    <input type="text" id="txtcliente" name="txtcliente" class="form-control" placeholder="id cliente" value="{{misclientes.idcliente}}" minlength="1" maxlength="6" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="nombre" value="{{misclientes.nombre}}" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtapellido" name="txtapellido" class="form-control" placeholder="apellido" value="{{miscleintes.apellido}}" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py">
+                    <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" placeholder="direccion" value="{{misclientes.direccion}}" minlength="1" maxlength="50" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtcorreo" name="txtcorreo" class="form-control" placeholder="correo" value="{{misclientes.correo}}" minlength="1" maxlength="50"  required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtelefono" name="txtelefono" class="form-control" placeholder="telefono" value="{{misclientes.telefono}}" minlength="1" maxlength="10"  required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="date" id="txtfecha" name="txtfecha" class="form-control" placeholder="fecha de registro YYYY-DD-MM" value="{{misclientes.fecha}}" minlength="1" maxlength="50"  required>
+                </div>
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-secondary">guardar cliente</button>
+                </div>
+
+            </form>
+        </div>
+    </div><!--la tarjeta-->
+    </div><!--columna izquierda-->
+
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--columna derecha-->
+    <h1>CLIENTES 👩‍💻</h1>
+    <img class="w-50" src="{% static "img/cliente.png" %}" alt="moras" width="100" height="300">
+    <!--la tabla -->
+    <table class="table table-bordered border-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">id cliente</th>
+            <th scope="col">nombre</th>
+            <th scope="col">apellido</th>
+            <th scope="col">direccion</th>
+            <th scope="col">correo</th>
+            <th scope="col">telefono</th>
+            <th scope="col">fecha de registro</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for m in misClientes  %}
+            
+            <tr>
+                <td> {{forloop.counter}} </td>
+                <td> {{m.idcliente}} </td>
+                <td> {{m.nombre}} </td>
+                <td> {{m.apellido}} </td>
+                <td> {{m.direccion}} </td>
+                <td> {{m.correo}} </td>
+                <td> {{m.telefono}} </td>
+                <td> {{m.fecharegistro | date:'d-m-y'}} </td>
+                <td> <a href="seleccionarCliente/{{m.idcliente}}" class="btn btn-info">editar</a></td><!--falta-->
+                <td> <a href="borrarCliente/{{m.idcliente}}" class="btn btn-danger" >borrar</a></td><!--falta-->
+            </tr>
+            
+
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--la tabla -->
+    </div><!--columna derecha-->
+</div><!--la fila-->
+{% endblock %}

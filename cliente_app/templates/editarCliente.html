@@ -1,0 +1,44 @@
+{% extends "base2.html" %}
+
+{% block cuerpo %}
+<div class="row"><!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>editar cliente 👨‍💼</h2>
+    <!--aqui codigo tarjeta-->
+    <div class="card"> <!--la tarjeta-->
+        <div class="card-body">
+            <form action="/editarCliente/" method="POST"> {% csrf_token %} <!--falta action-->
+                <div class="form-group">
+                    <input type="text" id="txtcliente" name="txtcliente" class="form-control"  value="{{misclientes.idcliente}}" minlength="1" maxlength="6"  readonly required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control" value="{{misclientes.nombre}}" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtapellido" name="txtapellido" class="form-control" value="{{misclientes.apellido}}" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py">
+                    <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"  value="{{misclientes.direccion}}" minlength="1" maxlength="50" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtcorreo" name="txtcorreo" class="form-control" value="{{misclientes.correo}}" minlength="1" maxlength="50"  required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtelefono" name="txtelefono" class="form-control" value="{{misclientes.telefono}}" minlength="1" maxlength="10"  required>
+                </div>
+                <div class="form-group py-2">
+                    <label for="">{{misclientes.fecharegistro}}</label>
+                    <input type="date" id="txtfecha" name="txtfecha" class="form-control" value="{{misclientes.fecha}}" minlength="1" maxlength="50"  required>
+                </div>
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-secondary">guardar cliente</button>
+                </div>
+
+            </form>
+        </div>
+    </div><!--la tarjeta-->
+    <!--aqui codigo tarjeta-->
+    </div>
+</div><!--fila en editar-->
+
+{% endblock cuerpo %}
