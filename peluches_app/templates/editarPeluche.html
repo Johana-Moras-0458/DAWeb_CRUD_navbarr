@@ -1,0 +1,54 @@
+{% extends "base2.html" %}
+
+{% block cuerpo %}
+<div class="row"><!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Peluche 📑</h2>
+        <!--aqui código tarjeta-->
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="/editarPeluche/" method="POST"> {% csrf_token %}
+                    <!-- Campo ID Peluche -->
+                    <div class="form-group">
+                        <input type="text" id="txtpeluche" name="txtpeluche" class="form-control" value="{{mispeluches.idpeluche}}" minlength="1" maxlength="6" readonly required>
+                    </div>
+                    <!-- Campo ID Proveedor -->
+                    <div class="form-group py-2">
+                        <input type="text" id="txtproveedor" name="txtproveedor" class="form-control" value="{{mispeluches.idproveedor}}" minlength="1" maxlength="6" required>
+                    </div>
+                    <!-- Campo Nombre -->
+                    <div class="form-group py-2">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control" value="{{mispeluches.nombre}}" minlength="1" maxlength="20" required>
+                    </div>
+                    <!-- Campo Color -->
+                    <div class="form-group py-2">
+                        <input type="text" id="txtcolor" name="txtcolor" class="form-control" value="{{mispeluches.color}}" minlength="1" maxlength="20" required>
+                    </div>
+                    <!-- Campo Tamaño -->
+                    <div class="form-group py-2">
+                        <input type="text" id="txtamaño" name="txtamaño" class="form-control" value="{{mispeluches.tamaño}}" minlength="1" maxlength="50" required>
+                    </div>
+                    <!-- Campo Precio -->
+                    <div class="form-group py-2">
+                        <input type="text" id="txtprecio" name="txtprecio" class="form-control" value="{{mispeluches.precio}}" minlength="1" maxlength="10" required>
+                    </div>
+                    <!-- Campo Tipo de Tela -->
+                    <div class="form-group py-2">
+                        <input type="text" id="txtela" name="txtela" class="form-control" value="{{mispeluches.tipotela}}" minlength="1" maxlength="20" required>
+                    </div>
+                    <!-- Campo ID Sucursal -->
+                    <div class="form-group py-2">
+                        <input type="text" id="txtsucursal" name="txtsucursal" class="form-control" value="{{mispeluches.idsucursal}}" minlength="1" maxlength="6" required>
+                    </div>
+                    <!-- Botón Guardar -->
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-secondary">Guardar Peluche</button>
+                    </div>
+                </form>
+            </div>
+        </div><!--la tarjeta-->
+        <!--aqui código tarjeta-->
+    </div>
+</div><!--fila en editar-->
+
+{% endblock cuerpo %}
