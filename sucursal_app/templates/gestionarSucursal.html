@@ -1,0 +1,83 @@
+{% extends "base2.html" %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"><!--la fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--columna izquierda-->
+
+    <h1>Sucursales 🏢</h1>
+    <div class="card"> <!--la tarjeta-->
+        <div class="card-body">
+            <form action="registrarSucursal/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtsucursal" name="txtsucursal" class="form-control" placeholder="ID sucursal" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="Nombre de la sucursal" minlength="1" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" placeholder="Dirección" minlength="1" maxlength="200" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtelefono" name="txtelefono" class="form-control" placeholder="Teléfono" minlength="1" maxlength="15" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtempleado" name="txtempleado" class="form-control" placeholder="ID empleado" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txthorario" name="txthorario" class="form-control" placeholder="Horario" minlength="1" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="email" id="txtcorreo" name="txtcorreo" class="form-control" placeholder="Correo electrónico" minlength="1" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-secondary">Guardar sucursal</button>
+                </div>
+            </form>
+        </div>
+    </div><!--la tarjeta-->
+    </div><!--columna izquierda-->
+
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--columna derecha-->
+    <h1>SUCURSALES 🏙</h1>
+    <img class="w-50" src="{% static "img/sucursal.png" %}" alt="moras" width="100" height="300">
+    <!--la tabla -->
+    <table class="table table-bordered border-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID Sucursal</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">ID Empleado</th>
+            <th scope="col">Horario</th>
+            <th scope="col">Correo</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for s in misSucursales %}
+            
+            <tr>
+                <td> {{ forloop.counter }} </td>
+                <td> {{ s.idsucursal }} </td>
+                <td> {{ s.nombre }} </td>
+                <td> {{ s.direccion }} </td>
+                <td> {{ s.telefono }} </td>
+                <td> {{ s.idempleado }} </td>
+                <td> {{ s.horario }} </td>
+                <td> {{ s.correo }} </td>
+                <td>
+                    <a href="seleccionarSucursal/{{s.idsucursal}}" class="btn btn-info">Editar</a>
+                    <a href="borrarSucursal/{{s.idsucursal}}" class="btn btn-danger">Borrar</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--la tabla -->
+    </div><!--columna derecha-->
+</div><!--la fila-->
+{% endblock %}
