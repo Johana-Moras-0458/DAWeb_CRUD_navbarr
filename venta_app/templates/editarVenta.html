@@ -1,0 +1,44 @@
+{% extends "base2.html" %}
+
+{% block cuerpo %}
+<div class="row"><!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>editar ventita 📑</h2>
+    <!--aqui codigo tarjeta-->
+    <div class="card"> <!--la tarjeta-->
+        <div class="card-body">
+            <form action="/editarVenta/" method="POST"> {% csrf_token %} <!--falta action-->
+                <div class="form-group">
+                    <input type="text" id="txtventa" name="txtventa" class="form-control" value="{{misventas.idventa}}" minlength="1" maxlength="6"  readonly required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtempleado" name="txtempleado" class="form-control" value="{{misventas.idempleado}}" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtproducto" name="txtproducto" class="form-control" value="{{misventas.idproducto}}" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py">
+                    <input type="text" id="txtcliente" name="txtcliente" class="form-control" value="{{misventas.idcliente}}" minlength="1" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txtsucursal" name="txtsucursal" class="form-control" value="{{misventas.idsucursal}}" minlength="1" maxlength="10"  required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="txt_total" name="txt_total" class="form-control" value="{{misventas.total}}" minlength="1" maxlength="10"  required>
+                </div>
+                <div class="form-group py-2">
+                    <label for="">{{misventas.fechacompra}}</label>
+                    <input type="date" id="txtfecha" name="txtfecha" class="form-control" value="{{misventas.fechacompra}}" minlength="1" maxlength="20"  required>
+                </div>
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-secondary">guardar venta</button>
+                </div>
+
+            </form>
+        </div>
+    </div><!--la tarjeta-->
+    <!--aqui codigo tarjeta-->
+    </div>
+</div><!--fila en editar-->
+
+{% endblock cuerpo %}
